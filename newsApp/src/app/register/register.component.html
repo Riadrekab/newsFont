@@ -1,0 +1,71 @@
+
+<header>
+    <div class='parent'>
+        <p  class='childOb' onclick = "window.location.href='index.html';"> Home </p>
+        <p  style="color: green;"> Register </p>
+        <p  class='childOb' routerLink="/search-page"> Login </p>
+    </div>
+</header>
+
+<body>
+
+    <div style=" width: 100%;">
+        <h1 style ="text-align: center"> Join us !</h1>
+        <div style ="display: inline-block; margin: 0 auto; width: 70%; padding-bottom: 20px;" >
+          <p style="padding-bottom:10px ;">
+            Join our community of news lovers today and start exploring the latest stories from around the world!
+        </div>
+    </div>
+
+          
+            
+<form id="registerForm">
+    <div class='formColumns' >
+        <div style="width: 80%; text-align: left; padding-left: 50px;"  >
+                <div style="text-align: left;">
+                    <div style="padding-bottom: 15px;"> 
+                        <label for="fname">Your first name:</label><br>
+                        <input type="text" id="fname" name="fname" placeholder="John" style="padding-left: 7px;"><br>
+                        <p class="missingVal">  Missing value </p>
+                    </div>
+                    
+                    <div style="padding-bottom: 15px;">
+                        <label for="lname" >Your last name:</label><br>
+                        <input type="text" id="lname" name="fname" placeholder="Don" style="padding-left: 7px;"><br>
+                        <p class="missingVal">  Missing value </p>
+                    </div>
+                    
+                    <div style="padding-bottom: 15px;">
+                        <label for="email">Your Email:</label><br>
+                        <input type="email" id="email" name="email" placeholder="JohnDon@gmail.com" style="padding-left: 7px;"><br>
+                        <p class="missingVal">  Missing value </p>
+                        <p class="wrongVal">  Wrong value </p>
+                    </div>
+                    
+
+                    <div style="padding-bottom: 15px;" >
+
+                        <label for="phone">Your phone number:</label><br>
+                        <input type="number" id="phone" name="phone" placeholder="0617357268" style="padding-left: 7px;"><br>
+                        <p class="missingVal">  Missing value </p>
+                        <p class="wrongVal">  Wrong value </p>
+                    </div>
+                    <div style="padding-bottom: 15px;" >
+                        <label for="phone">Passeword:</label><br>
+                        <input type="password" id="passwrd" name="passwrd" placeholder="" style="padding-left: 7px;"><br>
+                        <p class="missingVal">  Password too short (at least 8 characters) </p>
+                    </div>
+                </div>
+        </div>
+        <div style="width: 60%; padding-right: 50px;">
+            <img src="https://img.freepik.com/free-vector/announcement-concept-hand-holds-megaphone-sketch-design_1035-19322.jpg?w=1380&t=st=1683389584~exp=1683390184~hmac=43ac9e25ebbf0e4205c43a62c690b3c3cb21f86b8f18fa9f7ead67151711879f" style="width: 100%; height: 100%" >
+        </div>
+    </div>
+<button style="margin-top: 60px;" type="submit"> Join </button>
+
+</form> 
+<button class="Sign" style="margin-top: 30px;" routerLink="/search-page"> I have an account </button>
+
+
+
+</body> 

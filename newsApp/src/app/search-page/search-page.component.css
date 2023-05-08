@@ -3,16 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
-h1,h2,h3,label,input {
-    font-family: 'Roboto Mono', serif;
-}
 
-p {
-    font-family: 'Open Sans', serif;
-    text-align: justify;
-    text-align-last: center;
-    font-size: 18px;
-}
 
 .site{
     font-size: .8rem;
@@ -86,19 +77,6 @@ p {
 }
 
 
-.parent {
-    display: flex;
-    justify-content: space-around;
- }
- .childOb {
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.childOb:hover {
-    font-size: 20px;
-    color: red;
-}
 
 .inputField{
     width: 40%; 

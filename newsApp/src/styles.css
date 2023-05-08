@@ -1,2 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.css';
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@1,300&display=swap');
+
+
+.parent {
+    display: flex;
+    justify-content: space-around;
+ }
+ .childOb {
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.childOb:hover {
+    font-size: 20px;
+    color: red;
+}
+
+h1,h2,h3,label,input {
+    font-family: 'Roboto Mono', serif;
+}
+
+p {
+    font-family: 'Open Sans', serif;
+    text-align: justify;
+    text-align-last: center;
+    font-size: 18px;
+}

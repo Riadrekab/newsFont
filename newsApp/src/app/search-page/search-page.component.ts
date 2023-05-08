@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-page.component.css']
 })
 export class SearchPageComponent implements OnInit {
-
+  search = true
+  listeTest = [1,2,3,4]
   constructor() { }
 
   ngOnInit(): void {

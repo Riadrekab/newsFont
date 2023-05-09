@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-
+  listTest = [1,2,3,4]
   constructor() { }
 
   ngOnInit(): void {

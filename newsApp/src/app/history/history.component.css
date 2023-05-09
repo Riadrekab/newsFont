@@ -1,0 +1,12 @@
+.historyDiv {
+    width: 80%; 
+    justify-content: left;
+    margin-left: 20px; 
+    margin-bottom: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.historyDiv:hover {
+    background-color: rgb(232, 232, 232);
+}

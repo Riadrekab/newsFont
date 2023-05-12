@@ -8,7 +8,7 @@ import { NewsServiceService } from '../news-service.service';
 })
 export class SearchPageComponent implements OnInit {
   search = false
-  listeTest = [1,2,3,4]
+  listeTest = []
   constructor( private newsService : NewsServiceService) { }
 
   ngOnInit(): void {
@@ -20,9 +20,21 @@ export class SearchPageComponent implements OnInit {
     
   }
 
-  // getNews () {
-  //   this.newsService.getNews().subscribe(data=>{
-  //     console.log(data)
-  //   })
-  // }
+  goClick() {
+  this.search = true
+  this.getNews()
+  }
+
+  getNews () {
+    this.newsService.getNews().subscribe(data=>{
+    let vals =JSON.parse(data.toString())
+    this.listeTest = vals
+    console.log( this.listeTest[0]['body'])
+
+    })
+  
+  }
+  navigateToUrl(url: string) {
+    window.open(url, '_blank');
+  }
 }

@@ -15,7 +15,7 @@
     <div class="input">
         <form>
             <input class="inputField" type="text" name="query">
-            <input class="inputButtn" type="submit" value="Go" (click)="search = true">
+            <input class="inputButtn" type="submit" value="Go" (click)="goClick()">
         </form>
     </div>
 </div>
@@ -28,12 +28,12 @@
             <input class="inputButtn" type="submit" value="Go"(click)="search = false" >
         </form>
     </div>
-    <div class="column" *ngFor="let item of listeTest">
+    <div class="column" *ngFor="let item of listeTest" (click)="navigateToUrl(item['url'])">
         <hr style="margin: 0px; width: 94%;">
         <div class="row articleRow" >
             <div class="col-12 col-md-9">
-                <h5 style="padding-top: 10px;">  Toulouse thrash Sharks to reach Champions Cup semis </h5>
-                <p style=" font-size: 17px;display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"> "The record five-time winners will face Leinster in the last four in a rematch of the Irish province's victory at the same stage of the competition last year.\n\nToulouse led 14-10 after a hard-fought first half which saw Grant Williams touch down to put Sharks seven points ahead before the hosts hit back through Juan Cruz Mallia's try.\n\nThomas Ramos scored eight minutes after the break and converted himself.\n\nBoeta Chamberlain's try kept Sharks in the contest although Mallia's second try helped Toulouse into a 26-20 advantage with 11 minutes remaining.\n\nBut France full-back Ramos later scored another try and finished with 29 points as Toulouse ran away with the match.\n\nPeato Mauvaka, Arthur Retiere and Romain Ntamack all also dotted down late on to punish a tired Sharks.\n\nToulouse will face Leinster for a place in the final after their 55-24 hammering of Leicester on Friday.\n\nLater Saturday, Exeter take on Stormers at Sandy Park, while holders La Rochelle host Saracens on Sunday." </p>
+                <h5 style="padding-top: 10px;">  {{item['title']}} </h5>
+                <p style=" font-size: 17px;display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;"> {{item['body']}} </p>
                 <div style="display: flex; justify-content: center; align-items: center;"> 
                     <span class="material-symbols-outlined saved">
                         favorite
@@ -41,8 +41,8 @@
                 </div>
             </div>
             <div class=".col-12 col-md-3">
-    
-    <img src="https://s.france24.com/media/display/a1fcdf6e-d62a-11ed-8e60-005056a90321/w:1280/p:16x9/d560bd16fdaeb6cfb8ed2bb0f6a497ca7001fb76.jpg" style="width: 100%; height: 90%; margin-top: 3%; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); ">
+                <img *ngIf="item['image']" src="{{item['image']}}" style="width: 100%; height: 90%; margin-top: 3%; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
+                <img *ngIf="!item['image']" src="https://cdn-icons-png.flaticon.com/512/1017/1017141.png?w=1380&t=st=1683886573~exp=1683887173~hmac=7d558bb4e60528c6c153b4c1713726a63819e186757ca82fd988969ee7d738c6" style="width: 100%; height: 90%; margin-top: 3%; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
             </div>
         </div>
         <hr style="margin-bottom: 20px; margin-top: 0px; width: 94%; margin-left: 0px;margin-right: 0px;">

@@ -1,0 +1,56 @@
+<header>
+    <div class='parent' style="padding: 20px;">
+        <p  class='childOb' routerLink="/"> Home </p>
+        <p  class='childOb' routerLink="/register"> Register </p>
+        <p  style="color: green;"> Login </p>
+
+    </div>
+</header>
+<body>
+     <div style=" width: 100%;">
+        <h1 style ="text-align: center"> Welcome Back !</h1>
+        <div style ="display: inline-block; margin: 0 auto; width: 100%; padding-bottom: 20px;" >
+            <p style="padding-bottom:10px ;">
+            Welcome back on The Reader, we missed you. Log-in to see what's new on the platform
+        </div>
+    </div>
+
+              
+                
+    <form id="loginForm">
+        <div class='formColumns' >
+            <div style="width: 90%; text-align: left; padding-left: 50px; margin-top: 7%;"  >
+                    <div style="text-align: left;">
+                        <div style="padding-bottom: 15px;">
+                            <label for="email">Your Email:</label><br>
+                            <input type="email" id="email" name="email" placeholder="JohnDon@gmail.com" style="padding-left: 7px;"><br>
+                            <p *ngIf="false" class="missingVal">  Missing value </p>
+                            <p *ngIf="false" class="wrongVal">  Wrong value </p>
+                        </div>
+                        <div style="padding-bottom: 15px;" >
+                            <label for="phone">Passeword:</label><br>
+                            <input type="password" id="passwrd" name="passwrd" placeholder="" style="padding-left: 7px;"><br>
+                            <p *ngIf="false" class="missingVal">  Missing value </p>
+                            <p *ngIf="false" class="wrongVal">  Wrong value </p>
+                        </div>
+                        
+                    </div>
+            </div>
+            <div style="width: 45%; padding-right: 50px;">
+                <img src="https://img.freepik.com/free-vector/hand-drawn-flat-design-people-waving-illustration_23-2149195759.jpg?w=1800&t=st=1683975707~exp=1683976307~hmac=2678ce6ef2c062f2a6f8d2a73c447b0fad6924483dbec512b31cfff492d6887d" style="width: 100%; height: 250px" >
+            </div>
+        </div>
+
+    </form> 
+    <div class="col" style="width: 100%;margin: auto; display: flex; justify-content: center; align-items: center; margin-top: 50px;">
+        <button style="margin-top: 60px;" type="submit" > Login </button>
+
+    </div>
+    <div class="col" style="width: 100%;margin: auto; display: flex; justify-content: center; align-items: center;">
+        <button  style="margin-top: 30px; background-color: rgb(219, 0, 0);" onclick="window.location.href='register.html'" > I don't have an account </button>
+    </div>
+
+</body> 
+    
+
+        

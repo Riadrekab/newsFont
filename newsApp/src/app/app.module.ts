@@ -9,6 +9,7 @@ import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HistoryComponent } from './history/history.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {HttpClientModule} from '@angular/common/http';
     HomePageComponent,
     RegisterComponent,
     HistoryComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

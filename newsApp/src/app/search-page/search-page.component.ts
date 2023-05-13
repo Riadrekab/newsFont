@@ -29,7 +29,7 @@ export class SearchPageComponent implements OnInit {
     this.newsService.getNews().subscribe(data=>{
     let vals =JSON.parse(data.toString())
     this.listeTest = vals
-    console.log( this.listeTest[0]['body'])
+    console.log(this.listeTest)
 
     })
   

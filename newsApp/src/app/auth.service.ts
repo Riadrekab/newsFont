@@ -8,9 +8,14 @@ export class AuthService {
   readonly APIUrl = 'http://127.0.0.1:8000/';
 
   constructor(private http: HttpClient) { 
-    login (){
-      return this.http.get(this.APIUrl+'api/getNews')
-    }
-    
+  
   }
+
+  login (val:any){
+    return this.http.post(this.APIUrl+'users/login',val)
+  }
+  register (val:any){
+    return this.http.post(this.APIUrl+'users/register',val)
+  }
+
 }

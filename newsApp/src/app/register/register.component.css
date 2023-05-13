@@ -58,7 +58,6 @@ input {
     text-align-last: left; 
     font-size: 15px; 
     padding-top: 7px;
-    display: none;
 }
 .wrongVal {
     color: red; 

@@ -12,10 +12,10 @@ export class AuthService {
   }
 
   login (val:any){
-    return this.http.post(this.APIUrl+'users/login',val)
+    return this.http.post(this.APIUrl+'api/users/login',val)
   }
   register (val:any){
-    return this.http.post(this.APIUrl+'users/register',val)
+    return this.http.post(this.APIUrl+'api/users/register',val)
   }
 
 }

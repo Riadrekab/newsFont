@@ -23,36 +23,40 @@
     <div class='formColumns' >
         <div style="width: 80%; text-align: left; padding-left: 50px;"  >
                 <div style="text-align: left;">
-                    <div style="padding-bottom: 15px;"> 
+                    <div style="padding-bottom: 8px;"> 
                         <label for="fname">Your first name:</label><br>
-                        <input formControlName="firstName" type="text" id="fname" name="fname" placeholder="John" style="padding-left: 7px;"><br>
-                        <p class="missingVal" *ngIf="false">  Missing value </p>
+                        <input formControlName="first_name" type="text" id="fname" name="fname" placeholder="John" style="padding-left: 7px;"><br>
+                        <p class="missingVal" *ngIf="noFirst">  Missing value </p>
                     </div>
                     
-                    <div style="padding-bottom: 15px;">
+                    <div style="padding-bottom: 8px;"> 
                         <label for="lname" >Your last name:</label><br>
-                        <input formControlName="lastName" type="text" id="lname" name="fname" placeholder="Don" style="padding-left: 7px;"><br>
-                        <p class="missingVal" *ngIf="false">  Missing value </p>
+                        <input formControlName="last_name" type="text" id="lname" name="fname" placeholder="Don" style="padding-left: 7px;"><br>
+                        <p class="missingVal" *ngIf="noLast">  Missing value </p>
                     </div>
                     
-                    <div style="padding-bottom: 15px;">
+                    <div style="padding-bottom: 8px;"> 
                         <label for="email">Your Email:</label><br>
                         <input formControlName="email"  type="email" id="email" name="email" placeholder="JohnDon@gmail.com" style="padding-left: 7px;"><br>
-                        <p class="missingVal" *ngIf="false">  Missing value </p>
-                        <p class="wrongVal" *ngIf="false">  Wrong value </p>
+                        <p class="missingVal" *ngIf="noEmail">  Missing value </p>
+                        <p class="missingVal" *ngIf="wrongEmail">  Not a valid Email </p>
+                    </div>
+
+                    <div style="padding-bottom: 8px;"> 
+                        <label for="lname" >Your username:</label><br>
+                        <input formControlName="username" type="text" id="lname" name="fname" placeholder="DonJhon" style="padding-left: 7px;"><br>
+                        <p class="missingVal" *ngIf="noUsrnm">  Missing value </p>
                     </div>
                     
 
-                    <div style="padding-bottom: 15px;" >
-
+                    <div style="padding-bottom: 8px;"> 
                         <label for="phone">Passeword</label><br>
-                        <input formControlName="passwrd" type="password" id="passwrd" name="passwrd" placeholder="" style="padding-left: 7px;"><br>
-                        <p class="missingVal" *ngIf="false">  Missing value </p>
-                        <p class="wrongVal">  Wrong value </p>
+                        <input formControlName="password" type="password" id="passwrd" name="passwrd" placeholder="" style="padding-left: 7px;"><br>
+                        <p class="missingVal" *ngIf="noPaswd">  Missing value </p>
                     </div>
-                    <div style="padding-bottom: 15px;" >
+                    <div style="padding-bottom: 8px;"> 
                         <label  for="phone">Confirm Passeword:</label><br>
-                        <input formControlName="cfPasswrd" type="password" id="passwrd" name="passwrd" placeholder="" style="padding-left: 7px;"><br>
+                        <input formControlName="password_confirmation" type="password" id="passwrd" name="passwrd" placeholder="" style="padding-left: 7px;"><br>
                         <p class="missingVal" *ngIf="passwrdMismatch">  Passwords not matching </p>
                     </div>
                 </div>

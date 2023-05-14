@@ -74,7 +74,9 @@ export class RegisterComponent implements OnInit {
 
     if( this.passwrdMismatch == false && this.noPaswd == false && this.wrongEmail == false && this.noEmail == false && this.noLast  == false &&this.noFirst  == false && this.noUsrnm  == false ) {
       this.authService.register(this.registerForm.getRawValue()).subscribe(data=>{
-        console.log(data)
+        if (data =='User was created') {
+          window.location.href ='/search-page'
+        }
       })
     }
   }

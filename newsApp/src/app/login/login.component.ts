@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { DOCUMENT } from '@angular/common';
+
+interface LoginResponse {
+  detail: string;
+  refresh: string;
+  access: string;
+}
+
 
 
 @Component({
@@ -14,7 +22,7 @@ export class LoginComponent implements OnInit {
   noEmail = false;
   noPswd = false;
 
-  constructor(private formBuilder: FormBuilder,private authService : AuthService) { 
+  constructor(private formBuilder: FormBuilder,private authService : AuthService,@Inject(DOCUMENT) private document: Document) { 
     this.loginForm = this.formBuilder.group({
       identifier :'',
       password:''
@@ -23,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 
   login(){
     this.noEmail = false;
@@ -37,7 +46,10 @@ export class LoginComponent implements OnInit {
     }
     if (this.noPswd == false && this.noEmail == false ) {
       this.authService.login(this.loginForm.getRawValue()).subscribe(data=> {
-        // Have to add token
+
+
+        let token = (data as any).access
+        this.document.cookie = `token=${token}; path=/`;
         window.location.href = '/search-page'
       },
       (error: HttpErrorResponse) => {

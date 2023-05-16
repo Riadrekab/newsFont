@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewsServiceService } from '../news-service.service';
 import { AuthService } from '../auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -12,11 +13,17 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class SearchPageComponent implements OnInit {
   search = false
   listeTest = []
-  constructor( private newsService : NewsServiceService,private authService : AuthService) { }
+  vals!: FormGroup
+  constructor( private newsService : NewsServiceService,private authService : AuthService,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.vals = this.formBuilder.group({
+      input :''
+    })
     this.authService.checkToken().subscribe(data => {
-      
+      this.authService.refreshToken().subscribe(data=> {
+
+      })
     },
       (error: HttpErrorResponse) => {
         if (error.status === 401) {
@@ -36,7 +43,8 @@ export class SearchPageComponent implements OnInit {
   }
 
   getNews () {
-    this.newsService.getNews().subscribe(data=>{
+
+    this.newsService.getNews(this.vals.getRawValue()).subscribe(data=>{
     let vals =JSON.parse(data.toString())
     this.listeTest = vals
     })

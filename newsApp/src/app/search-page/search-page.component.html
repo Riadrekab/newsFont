@@ -13,9 +13,9 @@
 <div class="maindiv" *ngIf="!search">
     <img class="logo" src="../../assets/Breaking.png">
     <div class="input">
-        <form>
-            <input class="inputField" type="text" name="query">
-            <input class="inputButtn" type="submit" value="Go" (click)="goClick()">
+        <form [formGroup]="vals">
+            <input formControlName="input" class="inputField" type="text" name="query" >
+            <input class="inputButtn" type="submit" value="Go"  (click)="goClick()">
         </form>
     </div>
 </div>

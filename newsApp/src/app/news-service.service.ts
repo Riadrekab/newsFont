@@ -9,7 +9,8 @@ export class NewsServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getNews (){
-    return this.http.get(this.APIUrl+'api/getNews')
+  getNews (val : any){
+    const params = val
+    return this.http.get(this.APIUrl+'api/getNews',{params})
   }
 }

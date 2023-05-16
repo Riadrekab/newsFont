@@ -47,12 +47,19 @@ checkToken() {
   this.tokenHolder = this.formBuilder.group({
     access: token
   });
-
   const params = this.tokenHolder.getRawValue();
-
 
   return this.http.get(this.APIUrl+'api/users/valid-token/',{params})
 
   }
 
+
+refreshToken() {
+    const token = this.getTokenFromCookie();
+    this.tokenHolder = this.formBuilder.group({
+      access: token
+    });
+    const params = this.tokenHolder.getRawValue();
+    return this.http.get(this.APIUrl+'api/users/login/refresh/',{params})
+    }
 }

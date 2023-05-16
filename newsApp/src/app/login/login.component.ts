@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,private authService : AuthService,@Inject(DOCUMENT) private document: Document) { 
     this.loginForm = this.formBuilder.group({
-      identifier :'',
+      username :'',
       password:''
     })
   }
@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
 
 
         let token = (data as any).access
+        console.log(token)
         this.document.cookie = `token=${token}; path=/`;
         window.location.href = '/search-page'
       },

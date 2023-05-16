@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { NewsServiceService } from '../news-service.service';
 import { AuthService } from '../auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
 
 
 @Component({
@@ -13,8 +14,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SearchPageComponent implements OnInit {
   search = false
   listeTest = []
+  full = true
   vals!: FormGroup
-  constructor( private newsService : NewsServiceService,private authService : AuthService,private formBuilder: FormBuilder) { }
+  constructor( private newsService : NewsServiceService,private authService : AuthService,private formBuilder: FormBuilder,@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
     this.vals = this.formBuilder.group({
@@ -22,13 +24,17 @@ export class SearchPageComponent implements OnInit {
     })
     this.authService.checkToken().subscribe(data => {
       this.authService.refreshToken().subscribe(data=> {
-
+        this.document.cookie = `token=${(data as any).access }; path=/`;
+        this.document.cookie = `refresh=${(data as any).refresh}; path=/`;
       })
     },
       (error: HttpErrorResponse) => {
         if (error.status === 401) {
           document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-          if(this.isCookieDeleted()) {
+          document.cookie = 'refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+
+          if(this.isCookieDeleted('token') && this.isCookieDeleted('refresh')) {
             window.location.href='/'
           }
         }
@@ -45,9 +51,12 @@ export class SearchPageComponent implements OnInit {
   getNews () {
 
     this.newsService.getNews(this.vals.getRawValue()).subscribe(data=>{
-    let vals =JSON.parse(data.toString())
-    this.listeTest = vals
-    })
+      let vals =JSON.parse(data.toString())
+      this.listeTest = vals
+      if ((this.listeTest.length)==0) {
+        this.full = false
+      }
+      })
   }
 
   navigateToUrl(url: string) {
@@ -55,14 +64,14 @@ export class SearchPageComponent implements OnInit {
   }
 
 
-  isCookieDeleted() {
+  isCookieDeleted(value:any) {
     const cookies = document.cookie.split(';');
     
     for (let i = 0; i < cookies.length; i++) {
       const cookie = cookies[i].trim();
       
       // Check if the cookie starts with the provided name
-      if (cookie.startsWith(`${'token'}=`)) {
+      if (cookie.startsWith(`${value}=`)) {
         // Cookie still exists
         return false;
       }
@@ -73,3 +82,5 @@ export class SearchPageComponent implements OnInit {
   }
   
 }
+
+

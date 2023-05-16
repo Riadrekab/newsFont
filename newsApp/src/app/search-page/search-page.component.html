@@ -20,12 +20,12 @@
     </div>
 </div>
 
-<div class="maindivS" *ngIf="search" style="padding-left: 20px;">
+<div class="maindivS" *ngIf="search && full" style="padding-left: 20px;">
     <div class="input">
-        <form>
+        <form [formGroup]="vals">
             <img class="logo" src="../../assets/Breaking.png">
-            <input class="inputField" type="text" name="query">
-            <input class="inputButtn" type="submit" value="Go"(click)="search = false" >
+            <input formControlName="input" class="inputField" type="text" name="query">
+            <input class="inputButtn" type="submit" value="Go"(click)="goClick()" >
         </form>
     </div>
     <div class="column" *ngFor="let item of listeTest" (click)="navigateToUrl(item['url'])">
@@ -48,6 +48,18 @@
         <hr style="margin-bottom: 20px; margin-top: 0px; width: 94%; margin-left: 0px;margin-right: 0px;">
 
     </div>
+</div>
+
+<div class="maindiv" *ngIf="search && !full">
+    <div class="input">
+        <form>
+            <img class="logo" src="../../assets/Breaking.png">
+            <input formControlName="input" class="inputField" type="text" name="query">
+            <input class="inputButtn" type="submit" value="Go" (click)="goClick()" >
+        </form>
+    </div>
+    <h1> No results found</h1>
+
 </div>
 
 

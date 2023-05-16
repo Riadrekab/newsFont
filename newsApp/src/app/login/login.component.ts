@@ -46,11 +46,11 @@ export class LoginComponent implements OnInit {
     }
     if (this.noPswd == false && this.noEmail == false ) {
       this.authService.login(this.loginForm.getRawValue()).subscribe(data=> {
-
-
         let token = (data as any).access
-        console.log(token)
+        let refresh = (data as any).refresh
         this.document.cookie = `token=${token}; path=/`;
+        this.document.cookie = `refresh=${refresh}; path=/`;
+        console.log(this.document.cookie)
         window.location.href = '/search-page'
       },
       (error: HttpErrorResponse) => {

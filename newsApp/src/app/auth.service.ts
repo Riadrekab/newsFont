@@ -34,6 +34,27 @@ export class AuthService {
     return null;
   }
 
+  getRefreshToken() {
+    const cookieString = document.cookie;
+    const cookies = cookieString.split(';');
+    
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      
+      // Check if the cookie starts with 'token='
+      if (cookie.startsWith('refresh=')) {
+        // Extract the token value after the '=' sign
+        const refresh = cookie.substring('refresh='.length);
+        
+        // Return the token
+        return refresh;
+      }
+    }
+    
+    // Token not found in the cookie
+    return null;
+  }
+
   login (val:any){
     return this.http.post(this.APIUrl+'api/users/login/',val)
   }
@@ -55,11 +76,12 @@ checkToken() {
 
 
 refreshToken() {
-    const token = this.getTokenFromCookie();
+    const token = this.getRefreshToken();
     this.tokenHolder = this.formBuilder.group({
-      access: token
+      refresh: token
     });
-    const params = this.tokenHolder.getRawValue();
-    return this.http.get(this.APIUrl+'api/users/login/refresh/',{params})
+
+    console.log(this.tokenHolder.value)
+    return this.http.post(this.APIUrl+'api/users/login/refresh/',this.tokenHolder.getRawValue())
     }
 }

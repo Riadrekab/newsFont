@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { FeaturedComponent } from './featured/featured.component';
+import { RegisterPreferencesComponent } from './register-preferences/register-preferences.component';
 
 
 
@@ -25,6 +26,7 @@ import { FeaturedComponent } from './featured/featured.component';
     HistoryComponent,
     LoginComponent,
     FeaturedComponent,
+    RegisterPreferencesComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { HistoryComponent } from './history/history.component';
 import { LoginComponent } from './login/login.component';
 import { FeaturedComponent } from './featured/featured.component';
+import { RegisterPreferencesComponent } from './register-preferences/register-preferences.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path:'featured',
     component: FeaturedComponent,
+  },
+  {
+    path:'preferences',
+    component: RegisterPreferencesComponent,
   }
 ];
 

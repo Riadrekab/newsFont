@@ -40,4 +40,9 @@ export class PreferecesService {
     const url = this.APIUrl + 'api/topics/' + this.params+'/';
     return this.http.get(url);
   }
+
+  checkTopicsGen (){
+    const url = this.APIUrl + 'api/topics/';
+    return this.http.get<any[]>(url);
+  }
 }

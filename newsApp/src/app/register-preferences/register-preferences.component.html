@@ -18,8 +18,10 @@
                     </div>  
                 </div>
                 <hr style="width: 50%; border-color: black; margin: 0px; border-width: 2px; padding-bottom: 50px;">
-                <textarea style="padding: 0; width: 50%;height: 100px; padding: 6px; margin-bottom:40px;" placeholder="If i am a work show me news about finance, but if its the weekend or  holidays show me news about basketball"></textarea>
-
+                <textarea *ngIf="!manual" style="padding: 0; width: 50%;height: 100px; padding: 6px; margin-bottom:40px;" placeholder="If i am a work show me news about finance, but if it's the weekend or holidays show me news about basketball."></textarea>
+                <div>
+                    
+                </div>
                 
               </div>
 

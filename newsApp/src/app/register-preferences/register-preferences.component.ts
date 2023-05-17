@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PreferecesService } from '../prefereces.service';
 
 @Component({
   selector: 'app-register-preferences',
@@ -8,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterPreferencesComponent implements OnInit {
 
   manual = false
-  constructor() { }
+  items!: any[];
+  listOfTopics = ['Technology','Sports','Gaming','Music','Careers','Entertainment']
+  listOfTopicIds = [12,11,5,3,14,1]
+
+  constructor(private preference : PreferecesService) { }
 
   ngOnInit(): void {
+    this.preference.checkTopicsGen().subscribe(data=>{
+      console.log(data)
+    })
   }
 
 }

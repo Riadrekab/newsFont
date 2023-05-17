@@ -48,9 +48,13 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.getRawValue()).subscribe(data=> {
         let token = (data as any).access
         let refresh = (data as any).refresh
+        let username = this.loginForm.value['username']
+
         this.document.cookie = `token=${token}; path=/`;
         this.document.cookie = `refresh=${refresh}; path=/`;
-        console.log(this.document.cookie)
+        this.document.cookie = `username=${username}; path=/`;
+
+        
         window.location.href = '/search-page'
       },
       (error: HttpErrorResponse) => {

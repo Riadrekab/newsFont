@@ -5,6 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { RegisterComponent } from './register/register.component';
 import { HistoryComponent } from './history/history.component';
 import { LoginComponent } from './login/login.component';
+import { FeaturedComponent } from './featured/featured.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path:'history',
     component: HistoryComponent,
+  },
+  {
+    path:'featured',
+    component: FeaturedComponent,
   }
 ];
 

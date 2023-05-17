@@ -12,6 +12,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { FeaturedComponent } from './featured/featured.component';
 
 
 
@@ -23,6 +24,7 @@ import { CookieService } from 'ngx-cookie-service';
     RegisterComponent,
     HistoryComponent,
     LoginComponent,
+    FeaturedComponent,
   ],
   imports: [
     BrowserModule,

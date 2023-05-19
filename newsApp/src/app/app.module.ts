@@ -14,6 +14,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { FeaturedComponent } from './featured/featured.component';
 import { RegisterPreferencesComponent } from './register-preferences/register-preferences.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -33,7 +35,8 @@ import { RegisterPreferencesComponent } from './register-preferences/register-pr
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -17,10 +17,16 @@
                         <p  style="color: green;"> Manual </p>         
                     </div>  
                 </div>
-                <hr style="width: 50%; border-color: black; margin: 0px; border-width: 2px; padding-bottom: 50px;">
+                <hr style="width: 50%; border-color: black; margin: 0px; border-width: 2px; padding-bottom: 40px;">
                 <textarea *ngIf="!manual" style="padding: 0; width: 50%;height: 100px; padding: 6px; margin-bottom:40px;" placeholder="If i am a work show me news about finance, but if it's the weekend or holidays show me news about basketball."></textarea>
+                <form *ngIf="manual">
+                    <div *ngFor="let item of listOfTopics" style="padding-bottom: 20px;">
+                        <input style="cursor: pointer;" type="checkbox" id="{{item}}" name="{{item.name}}" [(ngModel)]="item.isChecked">
+                        <label for="{{item}}" style="margin-left: 10px;">{{item.name}}</label>
+                    </div>
+                </form>
                 <div>
-                    
+
                 </div>
                 
               </div>
@@ -32,12 +38,12 @@
 
          </div>
          <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding-bottom: 20px;">
-            <button onclick="window.location.href='register.html';">
+            <button (click)="formHandler()">
               Done
             </button>
           </div>
           <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding-bottom: 20px;">
-            <button style="background-color: rgb(219, 2, 2);" onclick="window.location.href='register.html';">
+            <button style="background-color: rgb(219, 2, 2);"  (click)="skipHandler()"> 
               Skip 
             </button>
           </div>

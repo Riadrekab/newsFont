@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PreferecesService } from '../prefereces.service';
-import { FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-preferences',
@@ -12,6 +13,7 @@ export class RegisterPreferencesComponent implements OnInit {
   manual = false
   items!: any[];
   preferedTopics!: number[];
+  formPrefered !: FormGroup;
   listOfTopics = [
     { name: 'Technology', isChecked: false,id :12 },
     { name: 'Sports', isChecked: false ,id :11},
@@ -24,7 +26,11 @@ export class RegisterPreferencesComponent implements OnInit {
 
 
 
-  constructor(private preference : PreferecesService) { }
+  constructor(private preference : PreferecesService,private formBuilder: FormBuilder) { 
+    this.formPrefered = this.formBuilder.group({
+      preferred_topics : []
+    })
+  }
 
   ngOnInit(): void {
     this.preference.checkTopicsGen().subscribe(data=>{
@@ -40,8 +46,16 @@ export class RegisterPreferencesComponent implements OnInit {
   formHandler() {
     if(this.manual) {
       this.updatePreferedTopics()
-      console.log(this.preferedTopics)
-    } 
+      this.preference.updateTopics(this.preferedTopics).subscribe(data => {
+          console.log(data)
+          window.location.href ='/featured'
+      },
+    (error: HttpErrorResponse) =>
+      {
+      console.log(error.error)
+      
+      })
+    }
     else {
       // Gorcias 
     }

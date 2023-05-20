@@ -52,4 +52,9 @@ export class NewsServiceService {
       console.log(this.saveForm.value)
       return this.http.post(this.APIUrl+'api/saveSearch',this.saveForm.getRawValue())
   }
+  getSaved() {
+    let username = this.getUsername()
+    const url = this.APIUrl+ 'api/users/results/'+ username +'/'
+    return this.http.get<any[]>(url)
+  }
 }

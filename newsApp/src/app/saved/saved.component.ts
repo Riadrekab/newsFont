@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { FormBuilder } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NewsServiceService } from '../news-service.service';
 
 @Component({
   selector: 'app-saved',
@@ -10,8 +11,13 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./saved.component.css']
 })
 export class SavedComponent implements OnInit {
+  full =  true;
+  listeTest: any[] = [];
 
-  constructor(private authService : AuthService,private formBuilder: FormBuilder,@Inject(DOCUMENT) private document: Document) { }
+
+  constructor(private authService : AuthService,private formBuilder: FormBuilder,@Inject(DOCUMENT) private document: Document,
+  private newsService:  NewsServiceService,
+  ) { }
 
   ngOnInit(): void {
     this.authService.checkToken().subscribe(data => {
@@ -24,14 +30,22 @@ export class SavedComponent implements OnInit {
         if (error.status === 401) {
           document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
           document.cookie = 'refresh=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-
-
           if(this.isCookieDeleted('token') && this.isCookieDeleted('refresh')) {
             window.location.href='/'
           }
         }
       }
     );
+    this.newsService.getSaved().subscribe(data => {
+      this.listeTest = data;
+      if ((this.listeTest.length)==0) {
+        this.full = false
+        console.log("okkk")
+      }
+
+    })
+
+    
   }
 
 
@@ -51,6 +65,11 @@ export class SavedComponent implements OnInit {
     // Cookie is deleted
     return true;
   }
+
+  navigateToUrl(url: string) {
+    window.open(url, '_blank');
+  }
+
   
 
 }

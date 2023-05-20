@@ -141,3 +141,10 @@
 .saved:hover {
    color: red;
 }
+
+.clicked {
+    /* Define your desired style changes here */
+
+    color: red;
+  }
+

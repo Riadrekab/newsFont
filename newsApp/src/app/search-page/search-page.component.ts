@@ -14,13 +14,26 @@ import { DOCUMENT } from '@angular/common';
 export class SearchPageComponent implements OnInit {
   search = false
   listeTest = []
+  clickedItems: boolean[] = [];
+
   full = true
   vals!: FormGroup
+  saveRes!: FormGroup
+  isClicked = false;
+
+
   constructor( private newsService : NewsServiceService,private authService : AuthService,private formBuilder: FormBuilder,@Inject(DOCUMENT) private document: Document) { }
 
   ngOnInit(): void {
     this.vals = this.formBuilder.group({
       input :''
+    })
+    this.saveRes = this.formBuilder.group({
+      url :'',
+      image :'',
+      body :'',
+      title :''
+
     })
     this.authService.checkToken().subscribe(data => {
       this.authService.refreshToken().subscribe(data=> {
@@ -57,6 +70,7 @@ export class SearchPageComponent implements OnInit {
         this.full = false
       }
       else {
+        this.clickedItems = new Array(this.listeTest.length).fill(false);
         this.newsService.saveSearch(this.vals.value['input'])
       }
       })
@@ -64,6 +78,21 @@ export class SearchPageComponent implements OnInit {
 
   navigateToUrl(url: string) {
     window.open(url, '_blank');
+  }
+
+  saveNews(title: any, body: any, image:any, url:any,index: number) {
+    this.clickedItems[index] = !this.clickedItems[index];
+    if (this.clickedItems[index] == true) {
+      this.saveRes = this.formBuilder.group({
+        url :url,
+        image :image,
+        body :body,
+        title :title
+      })
+      this.newsService.saveFavorite(this.saveRes.getRawValue()).subscribe(data => {
+        console.log(data)
+      })
+    }
   }
 
 

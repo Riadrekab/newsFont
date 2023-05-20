@@ -38,6 +38,12 @@ export class NewsServiceService {
     const params = val
     return this.http.get(this.APIUrl+'api/getNews',{params})
   }
+
+  saveFavorite(vals : any) {
+    let username = this.getUsername()
+    const url = this.APIUrl+ 'api/users/results/save/'+ username +'/'
+    return this.http.post(url, vals)
+  }
   saveSearch (vals: any) {
       this.saveForm = this.formBuilder.group( {
         username : this.getUsername(),

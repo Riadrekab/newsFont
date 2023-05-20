@@ -56,6 +56,9 @@ export class SearchPageComponent implements OnInit {
       if ((this.listeTest.length)==0) {
         this.full = false
       }
+      else {
+        this.newsService.saveSearch(this.vals.value['input'])
+      }
       })
   }
 

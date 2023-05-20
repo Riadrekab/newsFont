@@ -7,6 +7,7 @@ import { HistoryComponent } from './history/history.component';
 import { LoginComponent } from './login/login.component';
 import { FeaturedComponent } from './featured/featured.component';
 import { RegisterPreferencesComponent } from './register-preferences/register-preferences.component';
+import { SavedComponent } from './saved/saved.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path:'featured',
     component: FeaturedComponent,
+  },
+  {
+    path:'saved',
+    component: SavedComponent,
   },
   {
     path:'preferences',

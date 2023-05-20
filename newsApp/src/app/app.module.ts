@@ -15,6 +15,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FeaturedComponent } from './featured/featured.component';
 import { RegisterPreferencesComponent } from './register-preferences/register-preferences.component';
 import { FormsModule } from '@angular/forms';
+import { SavedComponent } from './saved/saved.component';
 
 
 
@@ -29,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent,
     FeaturedComponent,
     RegisterPreferencesComponent,
+    SavedComponent,
   ],
   imports: [
     BrowserModule,

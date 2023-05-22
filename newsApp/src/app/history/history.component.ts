@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NewsServiceService } from '../news-service.service';
 
 @Component({
   selector: 'app-history',
@@ -9,8 +10,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  listTest = [1,2,3,4]
-  constructor(@Inject(DOCUMENT) private document: Document, private authService : AuthService) { }
+  listTest = []
+  constructor(@Inject(DOCUMENT) private document: Document, private authService : AuthService,private newsService : NewsServiceService) { }
 
   ngOnInit(): void {
     this.authService.checkToken().subscribe(data => {
@@ -31,6 +32,9 @@ export class HistoryComponent implements OnInit {
         }
       }
     );
+    this.newsService.getHistory().subscribe(data => {
+      this.listTest = (data as any)
+    })
   }
 
   isCookieDeleted(value:any) {

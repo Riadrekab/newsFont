@@ -49,12 +49,19 @@ export class NewsServiceService {
         username : this.getUsername(),
         search : vals
       })
-      console.log(this.saveForm.value)
-      return this.http.post(this.APIUrl+'api/saveSearch',this.saveForm.getRawValue())
+      const val = this.saveForm.getRawValue()
+      return this.http.post(this.APIUrl+'api/saveHistory',val)
   }
   getSaved() {
     let username = this.getUsername()
     const url = this.APIUrl+ 'api/users/results/'+ username +'/'
     return this.http.get<any[]>(url)
   }
+
+  getHistory() {
+    let username = this.getUsername()
+    const url = this.APIUrl + 'api/users/history/'+ username +'/'
+    return this.http.get<any[]>(url)
+  }
+
 }

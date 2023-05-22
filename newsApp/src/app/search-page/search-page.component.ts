@@ -71,7 +71,9 @@ export class SearchPageComponent implements OnInit {
       }
       else {
         this.clickedItems = new Array(this.listeTest.length).fill(false);
-        this.newsService.saveSearch(this.vals.value['input'])
+        this.newsService.saveSearch(this.vals.value['input']).subscribe(data => {
+          console.log(data)
+        })
       }
       })
   }
@@ -90,7 +92,7 @@ export class SearchPageComponent implements OnInit {
         title :title
       })
       this.newsService.saveFavorite(this.saveRes.getRawValue()).subscribe(data => {
-        console.log(data)
+
       })
     }
   }

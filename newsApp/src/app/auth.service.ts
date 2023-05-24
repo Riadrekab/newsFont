@@ -54,6 +54,26 @@ export class AuthService {
     // Token not found in the cookie
     return null;
   }
+  getUsername() {
+    const cookieString = document.cookie;
+    const cookies = cookieString.split(';');
+    
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      
+      // Check if the cookie starts with 'token='
+      if (cookie.startsWith('username=')) {
+        // Extract the token value after the '=' sign
+        const token = cookie.substring('username='.length);
+        
+        // Return the token
+        return token;
+      }
+    }
+    
+    // Token not found in the cookie
+    return null;
+  }
 
   login (val:any){
     return this.http.post(this.APIUrl+'api/users/login/',val)
@@ -84,4 +104,12 @@ refreshToken() {
     console.log(this.tokenHolder.value)
     return this.http.post(this.APIUrl+'api/users/login/refresh/',this.tokenHolder.getRawValue())
     }
+    
+  checkPref () {
+    let user = this.getUsername()
+    const url = this.APIUrl + 'api/checkPref/'+ user+'/'
+    return this.http.get(url)
+    }
 }
+
+

@@ -9,16 +9,37 @@
 
                 <div style="width: 100%;display: flex; justify-content: center;padding-bottom: 10px;">
                     <div class='parent' style="padding-top: 20px; width: 50%;" *ngIf="!manual">
-                        <p style="color: green;"> Automatic </p>
-                        <p  class='childOb' (click)="manual = true" > Manual </p>         
+                        <p style="color: green;"> Detailed </p>
+                        <p  class='childOb' (click)="manual = true" > Simple </p>         
                     </div>
                     <div class='parent' style="padding-top: 20px; width: 50%;" *ngIf="manual">
-                        <p  class='childOb' (click)="manual = false"  > Automatic </p>
-                        <p  style="color: green;"> Manual </p>         
+                        <p  class='childOb' (click)="manual = false"  > Detailed </p>
+                        <p  style="color: green;"> Simple </p>         
                     </div>  
                 </div>
                 <hr style="width: 50%; border-color: black; margin: 0px; border-width: 2px; padding-bottom: 40px;">
-                <textarea *ngIf="!manual" style="padding: 0; width: 50%;height: 100px; padding: 6px; margin-bottom:40px;" placeholder="If i am a work show me news about finance, but if it's the weekend or holidays show me news about basketball."></textarea>
+                <form *ngIf="!manual">
+                  <div *ngFor="let item of listOfTopicsGorcias" style="padding-bottom: 30px;">
+                    <input style="cursor: pointer;" type="checkbox" id="{{item}}" name="{{item.name}}" [(ngModel)]="item.isChecked">
+                    <label for="{{item}}" style="margin-left: 10px;">{{item.name}}</label>
+                    <div *ngIf="item.isChecked" >
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="At Work"  [(ngModel)]="item.atWork">
+                        <label class="form-check-label" >At Work</label>
+                      </div>                      
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="Weekend" [(ngModel)]="item.Weekend">
+                        <label class="form-check-label" >In the Weekend</label>
+                      </div>                      
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" >
+                        <label class="form-check-label" >Both</label>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                
+                
                 <form *ngIf="manual">
                     <div *ngFor="let item of listOfTopics" style="padding-bottom: 20px;">
                         <input style="cursor: pointer;" type="checkbox" id="{{item}}" name="{{item.name}}" [(ngModel)]="item.isChecked">

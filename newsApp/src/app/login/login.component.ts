@@ -31,6 +31,12 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
+  
+
+
+
   
 
   login(){
@@ -52,7 +58,16 @@ export class LoginComponent implements OnInit {
         this.document.cookie = `token=${token}; path=/`;
         this.document.cookie = `refresh=${refresh}; path=/`;
         this.document.cookie = `username=${username}; path=/`;
-        window.location.href = '/search-page'
+        this.authService.checkPref().subscribe(data=>{
+          console.log(data)
+          if( data =='Full') {
+            window.location.href = '/search-page'
+          }
+          else {
+            window.location.href = '/preferences'
+          }
+
+        })
       },
       (error: HttpErrorResponse) => {
         if (error.status === 401) {

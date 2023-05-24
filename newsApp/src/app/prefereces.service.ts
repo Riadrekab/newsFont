@@ -59,16 +59,21 @@ export class PreferecesService {
       topicsArray.push(new FormControl(value));
     });
     this.params = this.getUsername();
-    const url = this.APIUrl + '/api/users/update/' + val + '/';
+    const url = this.APIUrl + 'api/users/update/' + val + '/';
     return this.http.post(url, this.updateForm.getRawValue());
 
   }
 
   getPrefered() {
     const val = this.getUsername();
-    const url = this.APIUrl + '/api/getFeatured/' + val + '/';
+    const url = this.APIUrl + 'api/getFeatured/' + val + '/';
     return this.http.get(url);
+  }
 
-
+  storeGorcias(data: any) {
+    const val = this.getUsername();
+    const url = this.APIUrl + 'api/updateGorcias/' + val + '/';
+    console.log(val)
+    return this.http.post<any>(url, data);
   }
 }

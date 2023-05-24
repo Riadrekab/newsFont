@@ -14,6 +14,9 @@ export class HistoryComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private document: Document, private authService : AuthService,private newsService : NewsServiceService) { }
 
   ngOnInit(): void {
+    this.newsService.preds().subscribe(data=>{
+      console.log(data)
+    })
     this.authService.checkToken().subscribe(data => {
       this.authService.refreshToken().subscribe(data=> {
         this.document.cookie = `token=${(data as any).access }; path=/`;

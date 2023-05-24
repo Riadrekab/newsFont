@@ -15,14 +15,19 @@ export class RegisterPreferencesComponent implements OnInit {
   preferedTopics!: number[];
   formPrefered !: FormGroup;
   listOfTopics = [
-    { name: 'Technology', isChecked: false,id :12 },
-    { name: 'Sports', isChecked: false ,id :11},
-    { name: 'Gaming', isChecked: false,id :5 },
-    { name: 'Music', isChecked: false ,id :3},
-    { name: 'Careers', isChecked: false,id :14 },
-    { name: 'Entertainment', isChecked: false,id :1},
+    { name: 'Sci/Tech', isChecked: false ,id :1 },
+    { name: 'Sports', isChecked: false ,id :6},
+    { name: 'Business', isChecked: false ,id :26},
+    { name: 'World', isChecked: false ,id :22},
   ]
-  listOfTopicIds = [12,11,5,3,14,1]
+  listOfTopicsGorcias = [
+    { name: 'Sci/Tech', isChecked: false ,id :1,atWork:false,Weekend:false},
+    { name: 'Sports', isChecked: false ,id :6,atWork:false,Weekend:false},
+    { name: 'Business', isChecked: false ,id :26,atWork:false,Weekend:false},
+    { name: 'World', isChecked: false ,id :22,atWork:false,Weekend:false},
+  ]
+  listvals = ['At Work','In the weekend','Both']
+  listOfTopicIds = [1,6,26,22]
 
 
 
@@ -43,11 +48,13 @@ export class RegisterPreferencesComponent implements OnInit {
       .filter(item => item.isChecked)
       .map(item => item.id);
   }
+  
   formHandler() {
     if(this.manual) {
       this.updatePreferedTopics()
+      console.log(this.preferedTopics)
+
       this.preference.updateTopics(this.preferedTopics).subscribe(data => {
-          console.log(data)
           window.location.href ='/featured'
       },
     (error: HttpErrorResponse) =>
@@ -57,10 +64,20 @@ export class RegisterPreferencesComponent implements OnInit {
       })
     }
     else {
-      // Gorcias 
+      this.preference.storeGorcias(this.listOfTopicsGorcias).subscribe(data => {
+        console.log(data)
+        // window.location.href ='/featured'
+    },
+  (error: HttpErrorResponse) =>
+    {
+    console.log(error.error)
+      
+      })
+    }
+        // Gorcias 
     }
 
-  }
+  
 
   skipHandler() {
 

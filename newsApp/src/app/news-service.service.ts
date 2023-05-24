@@ -64,4 +64,9 @@ export class NewsServiceService {
     return this.http.get<any[]>(url)
   }
 
+  preds() {
+    const url = this.APIUrl + 'api/predict/'
+    return this.http.get(url)
+  }
+
 }

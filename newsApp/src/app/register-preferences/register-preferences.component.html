@@ -1,5 +1,5 @@
 <body>
-    <div style="padding-top:40px;padding-bottom: 20px; width: 100%;">
+    <div style="padding-top:40px;padding-bottom: 20px; width: 100%;" *ngIf="!isLoading">
          <h1 style ="text-align: center"> Welcome !</h1>
          <div style ="display: inline-block; margin: 0 auto; width: 100%; padding-bottom: 20px;" >
            <p style="padding-bottom:20px ; padding-top:20px ">
@@ -12,31 +12,55 @@
                         <p style="color: green;"> Detailed </p>
                         <p  class='childOb' (click)="manual = true" > Simple </p>         
                     </div>
-                    <div class='parent' style="padding-top: 20px; width: 50%;" *ngIf="manual">
-                        <p  class='childOb' (click)="manual = false"  > Detailed </p>
-                        <p  style="color: green;"> Simple </p>         
-                    </div>  
+
                 </div>
                 <hr style="width: 50%; border-color: black; margin: 0px; border-width: 2px; padding-bottom: 40px;">
                 <form *ngIf="!manual">
-                  <div *ngFor="let item of listOfTopicsGorcias" style="padding-bottom: 30px;">
-                    <input style="cursor: pointer;" type="checkbox" id="{{item}}" name="{{item.name}}" [(ngModel)]="item.isChecked">
-                    <label for="{{item}}" style="margin-left: 10px;">{{item.name}}</label>
-                    <div *ngIf="item.isChecked" >
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="At Work"  [(ngModel)]="item.atWork">
-                        <label class="form-check-label" >At Work</label>
-                      </div>                      
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" name="Weekend" [(ngModel)]="item.Weekend">
-                        <label class="form-check-label" >In the Weekend</label>
-                      </div>                      
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" >
-                        <label class="form-check-label" >Both</label>
+
+                  <div *ngFor="let pr of profil" style="padding-bottom: 30px;">
+                    <label  style="padding-right: 10px;"> Do you work ? (Check if yes) </label>
+                    <input style="cursor: pointer;" type="checkbox" id="{{pr.work}}" name="{{profil}}" [(ngModel)]="pr.work" [disabled]="doneWork">
+                  </div>
+                  <div *ngFor="let pr of profil">
+                    <div *ngIf="pr.work">
+                      <div style="padding-bottom: 10px;">
+                        <label  style="padding-right: 10px;"> At what time do you start ?  </label>
+                        <input type="time" name="{{profil}}" [(ngModel)]="pr.start">
+                      </div>
+                      <div style="padding-bottom: 20px;">
+                        <label  style="padding-right: 10px;"> At what time do you finish ?  </label>
+                        <input type="time" name="{{profil}}" [(ngModel)]="pr.finish">
                       </div>
                     </div>
                   </div>
+                  <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding-bottom: 20px;">
+                    <button (click)="doneWork= true" style="width: 150px;" *ngIf="!doneWork">
+                      Next Step
+                    </button>
+                  </div>
+
+                  <div *ngIf="doneWork">
+                    <div *ngFor="let item of listOfTopicsGorcias" style="padding-bottom: 30px;">
+                      <input style="cursor: pointer;" type="checkbox" id="{{item}}" name="{{item.name}}" [(ngModel)]="item.isChecked">
+                      <label for="{{item}}" style="margin-left: 10px;">{{item.name}}</label>
+                      <div *ngIf="item.isChecked" >
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="At Work"  [(ngModel)]="item.atWork">
+                          <label class="form-check-label" >At Work</label>
+                        </div>                      
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" name="Weekend" [(ngModel)]="item.Weekend">
+                          <label class="form-check-label" >In the Weekend</label>
+                        </div>                      
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="checkbox" >
+                          <label class="form-check-label" >Both</label>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
                 </form>
                 
                 
@@ -69,5 +93,9 @@
             </button>
           </div>
      </div>  
+     <div class="loading" *ngIf="isLoading" style="padding-top: 50px;">
+      <div class="spinner"></div>
+      <p> Hold on, we are updating your profile</p>
+    </div>
      
  </body>

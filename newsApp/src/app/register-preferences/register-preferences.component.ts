@@ -9,11 +9,14 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./register-preferences.component.css']
 })
 export class RegisterPreferencesComponent implements OnInit {
-
+  isLoading: boolean = false;
+  data: any;
   manual = false
+  doneWork = false
   items!: any[];
   preferedTopics!: number[];
   formPrefered !: FormGroup;
+  
   listOfTopics = [
     { name: 'Sci/Tech', isChecked: false ,id :1 },
     { name: 'Sports', isChecked: false ,id :6},
@@ -26,6 +29,9 @@ export class RegisterPreferencesComponent implements OnInit {
     { name: 'Business', isChecked: false ,id :26,atWork:false,Weekend:false},
     { name: 'World', isChecked: false ,id :22,atWork:false,Weekend:false},
   ]
+  profil = [
+    { work: false, start:'none',finish:'none'},
+  ]
   listvals = ['At Work','In the weekend','Both']
   listOfTopicIds = [1,6,26,22]
 
@@ -35,6 +41,7 @@ export class RegisterPreferencesComponent implements OnInit {
     this.formPrefered = this.formBuilder.group({
       preferred_topics : []
     })
+
   }
 
   ngOnInit(): void {
@@ -64,15 +71,24 @@ export class RegisterPreferencesComponent implements OnInit {
       })
     }
     else {
-      this.preference.storeGorcias(this.listOfTopicsGorcias).subscribe(data => {
-        console.log(data)
-        // window.location.href ='/featured'
-    },
-  (error: HttpErrorResponse) =>
-    {
-    console.log(error.error)
-      
-      })
+      this.isLoading = true;
+      this.profil[0].start +=':00'
+      this.profil[0].finish +=':00'
+      console.log(this.profil)
+      this.preference.updateProfil(this.profil[0]).subscribe(data =>
+        {
+          this.preference.storeGorcias(this.listOfTopicsGorcias).subscribe(data => {
+            window.location.href ='/featured'
+            this.isLoading = false;
+        },
+        (error: HttpErrorResponse) =>
+          {
+          console.log(error.error)
+            
+            })
+          
+        })
+
     }
         // Gorcias 
     }

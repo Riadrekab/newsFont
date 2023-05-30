@@ -13,12 +13,16 @@ import { AuthService } from '../auth.service';
 
 export class FeaturedComponent implements OnInit {
   listeTest = []
+  listeTopics = []
   full = true
+  isLoading: boolean = false;
+
 
 
   constructor(private preferenceService: PreferecesService,@Inject(DOCUMENT) private document: Document, private authService : AuthService) {}
 
   ngOnInit(): void {
+    this.isLoading = true
     this.authService.checkToken().subscribe(data => {
       this.authService.refreshToken().subscribe(data=> {
         this.document.cookie = `token=${(data as any).access }; path=/`;
@@ -39,7 +43,11 @@ export class FeaturedComponent implements OnInit {
     );
     this.preferenceService.getPrefered().subscribe(data => {
         let vals =JSON.parse(data.toString())
-        this.listeTest = vals
+        console.log(vals)
+        this.listeTopics = vals["topics"]
+        this.listeTest = vals["savedTexts"]
+        this.isLoading = false
+
         if ((this.listeTest.length)==0) {
           this.full = false
         }

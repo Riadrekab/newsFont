@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup,FormArray, FormControl } from '@angular/forms';
 export class PreferecesService {
   readonly APIUrl = 'http://127.0.0.1:8000/';
   updateForm !: FormGroup
+  updateProfilForm!: FormGroup
   preferedTopics !: FormArray
   constructor( private http: HttpClient, private formBuilder : FormBuilder) { }
 
@@ -68,6 +69,18 @@ export class PreferecesService {
     const val = this.getUsername();
     const url = this.APIUrl + 'api/getFeatured/' + val + '/';
     return this.http.get(url);
+  }
+
+  updateProfil(vals : any) {
+      this.updateProfilForm = this.formBuilder.group ({
+        work : vals.work,
+        start: vals.start,
+        finish : vals.finish,
+        gorcias : true
+      })
+      const val = this.getUsername();
+      const url = this.APIUrl + 'api/users/update/' + val + '/';
+      return this.http.post<any>(url, this.updateProfilForm.getRawValue());
   }
 
   storeGorcias(data: any) {

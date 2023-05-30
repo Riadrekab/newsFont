@@ -34,7 +34,7 @@
         <hr style="margin: 0px; width: 94%;">
         <div class="row articleRow" >
             <div class="col-12 col-md-9" >
-                <h5 style="padding-top: 10px;">  {{item['title']}} </h5>
+                <h5 style="padding-top: 10px; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;">  {{item['title']}} </h5>
                 <p style=" font-size: 17px;display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" (click)="navigateToUrl(item['url'])"> {{item['body']}} </p>
                 <div style="display: flex; justify-content: center; align-items: center;"> 
 
